@@ -1,40 +1,41 @@
-# Level 7 - Create An Ethereum Dapp with Ethers.js
+# Level 7 - Créer une application Ethereum avec Ethers.js
 
 ### (Forked from [BlockDevsUnited/BasicFrontEndTutorial](https://github.com/BlockDevsUnited/BasicFrontEndTutorial))
 
-This is a step-by-step tutorial on how to create a front end, deploy a Solidity smart contract, and connect them together.
-We will use [Metamask](https://metamask.io), [Remix IDE](https://remix.ethereum.org) and [Ethers.js](https://github.com/ethers-io/ethers.js/).
+Il s'agit d'un tutoriel étape par étape sur la façon de créer un front-end, de déployer un contrat intelligent Solidity et de les connecter ensemble.
+Nous allons utiliser [Metamask](https://metamask.io), [Remix IDE](https://remix.ethereum.org) et [Ethers.js](https://github.com/ethers-io/ethers.js/).
 
-By the end of this tutorial you will be able to create a simple HTML front end with buttons that can interact with smart contract functions. The tutorial takes place in 3 stages
+À la fin de ce tutoriel, vous serez en mesure de créer un front-end HTML simple avec des boutons qui peuvent interagir avec les fonctions des contrats intelligents. Le tutoriel se déroule en 3 étapes
 
-- Create a basic HTML web page
-- Create a basic Solidity smart contract
-- Connect the web page with the smart contracts using Ethers.js.
+- Créer une page web HTML de base
+- Créer un contrat intelligent Solidity de base
+- Connecter la page web avec les contrats intelligents en utilisant Ethers.js
 
 ---
 
-## Prefer a Video?
+## Vous préférez une vidéo ?
 
-If you would rather learn from a video, we have a recording available of this tutorial on our YouTube. Watch the video by clicking on the screenshot below, or go ahead and read the tutorial!
+Si vous préférez apprendre à partir d'une vidéo, nous avons un enregistrement disponible de ce tutoriel sur notre YouTube. Regardez la vidéo en cliquant sur la capture d'écran ci-dessous, ou lisez le tutoriel!
 
 [![Cryptocurrency Tutorial](https://i.imgur.com/pDcYqIg.png)](https://www.youtube.com/watch?v=aqxAWLi6UMA "dApp Tutorial")
 
 ### Preparation
 
-1. **Download and Install [MetaMask](https://metamask.io)**
+1. **Télécharger et installer [MetaMask](https://metamask.io)**
 
-   - Never used Metamask? Watch [this explainer video](https://youtu.be/wlm4QcA8c4Q?t=66)
+   - Vous n'avez jamais utilisé Metamask ? Regardez [this explainer video](https://youtu.be/wlm4QcA8c4Q?t=66)
 
-     _The important bits for us are: `1:06 to 4:14`_
+     _Les éléments importants : `1:06 to 4:14`_
 
-   - Click Ethereum Mainnet in the top. Change to the Ropsten Tesnet and get a copy of the account's public address on your Metamask Wallet.
+   - Cliquez sur Ethereum Mainnet en haut. Passez au Ropsten Tesnet et obtenez une copie de l'adresse publique du compte sur votre Metamask Wallet.
 
-2. **Request some Ropsten Tesnet Ether from a faucet loaded into your Metamask Wallet.**
+
+2. **Demandez de l'éther Ropsten Tesnet à partir d'un robinet/faucet chargé dans votre porte-monnaie Metamask.**
 
    - [Faucet link to request funds](https://faucet.egorfine.com/)
    - [Blog explaining a faucet and how to use one](https://blog.b9lab.com/when-we-first-built-our-faucet-we-deployed-it-on-the-morden-testnet-70bfbf4e317e)
 
-3. **Install a http server. Use any you like, but we recommend `lite-server` for beginners:**
+3. **Installez un serveur http. Utilisez celui que vous voulez, mais nous recommandons `lite-server` pour les débutants :**
 
    - Install Node.js ([Download and Instructions](https://nodejs.org/en/download/))
    - Install lite-server (with NPM in a terminal/command prompt):
@@ -45,15 +46,15 @@ If you would rather learn from a video, we have a recording available of this tu
 
 ---
 
-### Create and Serve a Simple Webpage
+### Créer et utiliser une page Web simple
 
 The first step is to create a basic HTML page.
 
-1.  Create a new folder (directory) in your terminal using `mkdir <directory name>`
-2.  In a code editor (e.g. Atom, or Visual Studio Code), open the folder
-3.  Create a new file called `index.html`
-4.  Open index.html
-5.  Create HTML boilerplate
+1.  Créez un nouveau dossier (répertoire) dans votre terminal en utilisant `mkdir <nom du répertoire>`.
+2.  Dans un éditeur de code (par exemple Atom, ou Visual Studio Code), ouvrez le dossier
+3.  Créer un nouveau fichier appelé `index.html`.
+4.  Ouvrez index.html
+5.  Créer un modèle HTML
 
 ```html
 <!DOCTYPE html>
@@ -68,9 +69,9 @@ The first step is to create a basic HTML page.
 </html>
 ```
 
-We will create an app that simply reads and writes a value to the blockchain. We will need a label, an input, and buttons.
+Nous allons créer une application qui lit et écrit simplement une valeur sur la blockchain. Nous aurons besoin d'une étiquette, d'une entrée et de boutons.
 
-6. Inside the body tag, add some text, a label and input.
+6. À l'intérieur de la balise body, ajoutez du texte, une étiquette et une entrée.
 
 ```html
 <body>
@@ -90,7 +91,7 @@ We will create an app that simply reads and writes a value to the blockchain. We
 <button onclick="setMood()">Set Mood</button>
 ```
 
-OPTIONAL: Inside the `<head>` tag, add some styles to make it look nicer
+OPTIONNEL : A l'intérieur de la balise `<head>`, ajoutez quelques styles pour le rendre plus joli.
 
 ```html
 <style>
@@ -113,23 +114,22 @@ OPTIONAL: Inside the `<head>` tag, add some styles to make it look nicer
 </style>
 ```
 
-8.  Serve the webpage via terminal/command prompt from the directory that has `index.html` in it and run:
-
+8.  Servez la page web via un terminal/une invite de commande à partir du répertoire qui contient `index.html` et exécutez :
     ```bash
     lite-server
     ```
 
-9.  Go to [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in your browser to see your page!
+9.  Aller à [http://127.0.0.1:3000/](http://127.0.0.1:3000/) dans votre navigateur pour voir votre page !
 
-10. Your front end is now complete!
+10. Votre front-end est maintenant complet !
 
 ---
 
-### Create a Basic Smart Contract
+### Créer un Smart Contract de base
 
-Now it's time to create a Solidity smart contract.
+Il est maintenant temps de créer un contrat intelligent Solidity.
 
-1. You can use any editor you like to make the contract. For this tutorial we recommend the online IDE [Remix](https://remix.ethereum.org)
+1. Vous pouvez utiliser l'éditeur de votre choix pour réaliser le contrat. Pour ce tutoriel, nous recommandons l'IDE en ligne [Remix](https://remix.ethereum.org)
    - Never used Remix before? Checkout [This video](https://www.youtube.com/watch?v=pdJttvcAV1c)
 2. Go to [Remix](https://remix.ethereum.org)
 3. Check out the "Solidity Compiler", and "Deploy and Run Transactions" tabs. If they are not present, enable them in the plugin manager
