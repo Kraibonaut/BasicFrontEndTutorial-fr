@@ -48,7 +48,7 @@ Si vous préférez apprendre à partir d'une vidéo, nous avons un enregistremen
 
 ### Créer et utiliser une page Web simple
 
-The first step is to create a basic HTML page.
+La première étape consiste à créer une page HTML de base.
 
 1.  Créez un nouveau dossier (répertoire) dans votre terminal en utilisant `mkdir <nom du répertoire>`.
 2.  Dans un éditeur de code (par exemple Atom, ou Visual Studio Code), ouvrez le dossier
@@ -84,7 +84,7 @@ Nous allons créer une application qui lit et écrit simplement une valeur sur l
 </body>
 ```
 
-7.  Inside the div tag add some buttons.
+7.  À l'intérieur de la balise div, ajoutez des boutons.
 
 ```html
 <button onclick="getMood()">Get Mood</button>
@@ -130,20 +130,20 @@ OPTIONNEL : A l'intérieur de la balise `<head>`, ajoutez quelques styles pour l
 Il est maintenant temps de créer un contrat intelligent Solidity.
 
 1. Vous pouvez utiliser l'éditeur de votre choix pour réaliser le contrat. Pour ce tutoriel, nous recommandons l'IDE en ligne [Remix](https://remix.ethereum.org)
-   - Never used Remix before? Checkout [This video](https://www.youtube.com/watch?v=pdJttvcAV1c)
+   - Vous n'avez jamais utilisé Remix ? Consultez le site [This video](https://www.youtube.com/watch?v=pdJttvcAV1c) 
 2. Go to [Remix](https://remix.ethereum.org)
-3. Check out the "Solidity Compiler", and "Deploy and Run Transactions" tabs. If they are not present, enable them in the plugin manager
-4. Create a new solidity file in remix, named `mood.sol`
-5. Write the contract
+3. Vérifiez les onglets "Solidity Compiler", et "Deploy and Run Transactions". S'ils ne sont pas présents, activez-les dans le gestionnaire de plugins. 
+4. Créez un nouveau fichier solidity dans remix, nommé `mood.sol`.
+5. Ecrivez le contrat
 
-   - Specify the solidity version and add a license
+   - Spécifier la version de solidity et ajouter une licence
 
    ```
    // SPDX-License-Identifier: MIT
     pragma solidity ^0.8.1;
    ```
 
-   - Define the contract
+   - Définissez le contrat
 
    ```
     contract MoodDiary{
@@ -151,51 +151,51 @@ Il est maintenant temps de créer un contrat intelligent Solidity.
     }
    ```
 
-   - Inside the contract create a variable called mood
+   - Dans le contrat, créez une variable appelée mood
 
    ```
     string mood;
    ```
 
-   - Next, create Read and Write functions
+   - Ensuite, créez les fonctions de lecture et d'écriture
 
    ```
-    //create a function that writes a mood to the smart contract
+    //créer une fonction qui écrit une humeur au smart contract
     function setMood(string memory _mood) public{
         mood = _mood;
     }
 
-    //create a function the reads the mood from the smart contract
+    //créer une fonction qui lit l'humeur du contrat intelligent
     function getMood() public view returns(string memory){
         return mood;
     }
    ```
 
-   - And that's it! Your code should look like [this](https://github.com/LearnWeb3DAO/BasicFrontEndTutorial/blob/master/contracts/mood.sol)
+   - Et voilà, c'est fait ! Votre code devrait ressembler à [ça](https://github.com/LearnWeb3DAO/BasicFrontEndTutorial/blob/master/contracts/mood.sol)
 
-6. Deploy the contract on the Ropsten Testnet.
-   - Make sure your Metamask is connected to the Ropsten Testnet.
-   - Make sure you select the right compiler version to match the solidity contract. (In the compile tab)
-   - Compile the code using the "Solidity Compiler" tab. _Note that it may take a moment to load the compiler_
-   - Deploy the contract under the "Deploy and Run Transactions" tab
-   - Under the Deployed Contracts section, you can test out your functions on the Remix Run tab to make sure your contract works as expected!
+6. Déployez le contrat sur le Ropsten Testnet.
+   - Assurez-vous que votre Metamask est connecté au Ropsten Testnet.
+   - Assurez-vous que vous sélectionnez la bonne version du compilateur pour correspondre au contrat Solidity. (Dans l'onglet compiler)
+   - Compilez le code en utilisant l'onglet "Solidity Compiler". Notez que le chargement du compilateur peut prendre un certain temps.
+   - Déployez le contrat sous l'onglet "Deploy and Run Transactions".
+   - Sous la section "Deployed Contracts", vous pouvez tester vos fonctions dans l'onglet "Remix Run" pour vous assurer que votre contrat fonctionne comme prévu !
 
-**_Be sure to deploy on Ropsten via Remix under the `Injected Web3` environment and confirm the deployment transaction in Metamask_**
+**_Assurez-vous de déployer sur Ropsten via Remix sous l'environnement `Injected Web3` et confirmez la transaction de déploiement dans Metamask._**
 
-Make a new temporary file to hold:
+Créez un nouveau fichier temporaire à conserver :
 
-- The deployed contract's address
-  - Copy it via the copy button next to the deployed contracts pulldown in remix's **Run** tab
-- The contract ABI ([what is that?](https://solidity.readthedocs.io/en/develop/abi-spec.html))
-  - Copy it via the copy button under to the contract in remix's **Compile** tab (also in Details)
+- L'adresse du contrat déployé
+- Copiez-la via le bouton de copie situé à côté de la liste déroulante des contrats déployés dans l'onglet **Run** de Remix.
+- L'ABI du contrat ([qu'est-ce que c'est ?](https://solidity.readthedocs.io/en/develop/abi-spec.html))
+- Copiez-le via le bouton de copie situé sous le contrat dans l'onglet **Compile** de remix (également dans Détails).
 
 ---
 
-### Connect Your Webpage to Your Smart Contract
+### Connectez votre page Web à votre contrat intelligent
 
-Back in your local text editor in `index.html`, add the following code to your html page:
+De retour dans votre éditeur de texte local, dans `index.html`, ajoutez le code suivant à votre page html :
 
-1. Import the Ethers.js source into your `index.html` page inside a new set of script tags:
+1. Importez la source Ethers.js dans votre page `index.html` à l'intérieur d'un nouvel ensemble de balises de script:
 
 ```html
 <script
@@ -205,12 +205,12 @@ Back in your local text editor in `index.html`, add the following code to your h
 
 <script>
   ////////////////////
-  //ADD YOUR CODE HERE
+  //AJOUTEZ VOTRE CODE ICI
   ////////////////////
 </script>
 ```
 
-2. Inside the script tag, import the contract ABI ([what is that?](https://solidity.readthedocs.io/en/develop/abi-spec.html)) and specify the contract address on our provider's blockchain:
+2. À l'intérieur de la balise script, importez le contrat ABI ([what is that?](https://solidity.readthedocs.io/en/develop/abi-spec.html)) et spécifier l'adresse du contrat sur la blockchain de notre fournisseur :
 
 ```javascript
   const MoodContractAddress = "<contract address>";
@@ -219,34 +219,34 @@ Back in your local text editor in `index.html`, add the following code to your h
   let signer;
 ```
 
-For the contract ABI, we want to specifically navigate to the [JSON Section](https://docs.soliditylang.org/en/develop/abi-spec.html#json).
-We need to describe our smart contract in JSON format.
+Pour le contrat ABI, nous voulons spécifiquement naviguer vers le fichier [JSON Section (https://docs.soliditylang.org/en/develop/abi-spec.html#json).
+Nous devons décrire notre contrat intelligent au format JSON.
 
-Since we have two methods, this should start as an array, with 2 objects:
+Puisque nous avons deux méthodes, cela devrait commencer comme un tableau, avec 2  objects:
 
 ```
 const MoodContractABI = [{}, {}]
 ```
 
-From the above page, each object should have the following fields: `constant`, `inputs`, `name`, `outputs`, `payable`, `stateMutability` and `type`.
+A partir de la page ci-dessus, chaque objet devrait avoir les champs suivants : `constant`, `inputs`, `name`, `outputs`, `payable`, `stateMutability` and `type`.
 
-For `setMood`, we describe each field below:
+Pour `setMood`, nous décrivons chaque champ ci-dessous:
 
-- name: `setMood`, self explanatory
-- type: `function`, self explanatory
-- outputs: should be `[]` because this does not return anything
-- stateMutability: This is `nonpayable` because this function does not accept Ether
+- name: `setMood`, s'explique lui-même
+- type: `function`, s'explique lui-même
+- outputs: devrait être `[]` parce que cela ne retourne rien
+- stateMutability: Ceci est `nonpayable` car cette fonction n'accepte pas Ether
 - inputs: this is an array of inputs to the function. Each object in the array should have `internalType`, `name` and `type`, and these are `string`, `_mood` and `string` respectively
 
-For `getMood`, we describe each field below:
+pour `getMood`, nous décrivons chaque champ ci-dessous:
 
-- name: `getMood`, self explanatory
-- type: `function`, self explanatory
-- outputs: this has the same type as `inputs` in `setMood`. For `internalType`, `name` and `type`, this should be `string`, `""`, and `string` respectively
-- stateMutability: This is `view` because this is a view function
-- inputs: this has no arguments so this should be `[]`
+- name: `getMood`, s'explique lui-même
+- type: `function`, s'explique lui-même
+- outputs: ce dernier a le même type que `inputs` dans `setMood`. Pour `internalType`, `name` et `type`, cela devrait être `string`, `""`, et `string` respectivement
+- stateMutability: C'est `view` parce que c'est une fonction de view.
+- inputs: ceci n'a pas d'arguments donc cela devrait être `[]`
 
-Your end result should look like this:
+Votre résultat final devrait ressembler à ceci :
 
 ```
 const MoodContractABI = [
@@ -279,13 +279,13 @@ const MoodContractABI = [
 ]
 ```
 
-3. Next, Define an ethers provider. In our case it is Ropsten:
+3. Ensuite, définissez un fournisseur d'ethers. Dans notre cas, c'est Ropsten :
 
 ```javascript
 const provider = new ethers.providers.Web3Provider(window.ethereum, "ropsten");
 ```
 
-4. Request access to the user's wallet and connect the signer to your metamask account (we use `[0]` as the default), and define the contract object using your contract address, ABI, and signer
+4. Demandez l'accès au portefeuille de l'utilisateur et connectez le signataire à votre compte metamask (nous utilisons `[0]` par défaut), et définissez l'objet du contrat en utilisant votre adresse de contrat, ABI, et le signataire.
 
 ```javascript
 provider.send("eth_requestAccounts", []).then(() => {
@@ -300,7 +300,7 @@ provider.send("eth_requestAccounts", []).then(() => {
 });
 ```
 
-5. Create asynchronous functions to call your smart contract functions
+5. Créez des fonctions asynchrones pour appeler les fonctions de votre contrat intelligent.
 
 ```javascript
 async function getMood() {
@@ -316,7 +316,7 @@ async function setMood() {
 }
 ```
 
-6. Connect your functions to your html buttons
+6. Reliez vos fonctions à vos boutons html
 
 ```html
 <button onclick="getMood()">Get Mood</button>
@@ -325,22 +325,22 @@ async function setMood() {
 
 ---
 
-### Test Your Work Out!
+### Testez votre exercices !
 
-1. Got your webserver up? Go to [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in your browser to see your page!
-2. Test your functions and approve the transactions as needed through Metamask. Note block times are ~15 seconds... so wait a bit to read the state of the blockchain
-3. See your contract and transaction info via [https://ropsten.etherscan.io/](https://ropsten.etherscan.io/)
-4. Open a console (`Ctrl + Shift + i`) in the browser to see the magic happen as you press those buttons
-
----
-
-### DONE!
-
-Celebrate! You just made a webpage that interacted with _a real live Ethereum testnet on the internet_! That is not something many folks can say they have done!
+1. Votre serveur web est en place ? Aller à [http://127.0.0.1:3000/](http://127.0.0.1:3000/) dans votre navigateur pour voir votre page !
+2. Testez vos fonctions et approuvez les transactions si nécessaire via Metamask. Notez que les temps de bloc sont de ~15 secondes... donc attendez un peu pour lire l'état de la blockchain.
+3. Consultez votre contrat et les informations sur les transactions via [https://ropsten.etherscan.io/](https://ropsten.etherscan.io/)
+4. Ouvrez une console (`Ctrl + Shift + i`) dans le navigateur pour voir la magie se produire lorsque vous appuyez sur ces boutons.
 
 ---
 
-### If you had trouble with the tutorial, you can try out the example app provided.
+### C'EST FAIT !
+
+Célébrez ! Vous venez de créer une page web qui interagit avec _un véritable réseau de test Ethereum sur Internet_ ! Ce n'est pas quelque chose que beaucoup de gens peuvent dire qu'ils ont fait !
+
+---
+
+### Si vous avez eu des difficultés avec le tutoriel, vous pouvez essayer l'application d'exemple fournie.
 
 ```bash
 git clone https://github.com/LearnWeb3DAO/BasicFrontEndTutorial.git
@@ -348,14 +348,14 @@ cd BasicFrontEndTutorial
 lite-server
 ```
 
-#### Try and use the following information to interact with an existing contract we published on the Roptsen testnet:
+#### Essayez d'utiliser les informations suivantes pour interagir avec un contrat existant que nous avons publié sur le Roptsen testnet :
 
-- We have a `MoodDiary` contract instance created [at this transaction](https://ropsten.etherscan.io/tx/0x8da093fdc4ae3e1b469dfff97b414a9800c9fdd8c1c897b6b746faf43aa3b7f8)
+- Nous avons créé une instance de contrat `MoodDiary`. [at this transaction](https://ropsten.etherscan.io/tx/0x8da093fdc4ae3e1b469dfff97b414a9800c9fdd8c1c897b6b746faf43aa3b7f8)
 
-- Here is the contract ([on etherscan](https://ropsten.etherscan.io/address/0xc5afd2d92750612a9619db2282d9037c58fc22cb))
+- Voici le contrat en question ([on etherscan](https://ropsten.etherscan.io/address/0xc5afd2d92750612a9619db2282d9037c58fc22cb))
 
-  - We also verified our source code to [ropsten.etherscan.io](https://ropsten.etherscan.io/address/0xc5afd2d92750612a9619db2282d9037c58fc22cb#code) as an added measure for you to verify what the contract is exactly, and also the ABI is available to _the world_!
+- Nous avons également vérifié notre code source pour [ropsten.etherscan.io](https://ropsten.etherscan.io/address/0xc5afd2d92750612a9619db2282d9037c58fc22cb#code) comme une mesure supplémentaire pour vous de vérifier ce que le contrat est exactement, et aussi l'ABI est disponible pour _le monde_ !
 
-- The ABI is also in [this file](https://github.com/LearnWeb3DAO/BasicFrontEndTutorial/blob/master/Mood_ABI.json)
+- L'ABI est aussi dans [this file](https://github.com/LearnWeb3DAO/BasicFrontEndTutorial/blob/master/Mood_ABI.json)
 
-#### This illustrates an important point: you can also build a dApp _without needing to write the Ethereum contract yourself_! If you want to use an existing contract written and already on Ethereum, you can!
+#### Cela illustre un point important : vous pouvez également construire une dApp _sans avoir besoin d'écrire le contrat Ethereum vous-même_ ! Si vous voulez utiliser un contrat existant écrit et déjà sur Ethereum, vous le pouvez !
